@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./Bounty Page";
+import Home from "./Bountys";
 import NavBar from "./NavBar";
 
 
