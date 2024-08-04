@@ -1,7 +1,17 @@
-export default function Home() {
+import React from "react";
+import Home from "./Bounty Page";
+import NavBar from "./NavBar";
+
+
+export default function BountyBoard() {
   return (
     <>
-      <h1>Hello World</h1>
+      <NavBar />
+      <h1 style = {{
+          textAlign: "center",
+          margin: "75px 0 0 0",
+      }}>Bounty Board</h1>
+      <Home />
     </>
   );
 }
