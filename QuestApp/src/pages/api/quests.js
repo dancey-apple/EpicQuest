@@ -7,8 +7,20 @@ export default async function handler(req, res) {
     try {
       const quests = await prisma.quests.findMany({
         select: {
+          id: true,
           summary: true,
           description: true,
+          createdAt: true,
+          updatedAt: true,
+          status: true,
+          xp: true,
+          assigneeId: true,
+          assignee: {
+            select: {
+              firstName: true,
+              lastName: true,
+            },
+          },
         },
       });
       console.log("Fetched quests:", quests);

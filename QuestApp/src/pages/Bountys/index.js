@@ -32,7 +32,17 @@ export default function QuestsPage() {
 
   return (
     <>
-      <h1>Bountys</h1>
+      <div 
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          height: "50px",
+          margin: "0 0 10px 0",
+        }}>
+        <h1>Bountys</h1>
+        <button>New Quest</button>
+      </div>
       <div
         style={{
           display: "flex",
@@ -41,7 +51,7 @@ export default function QuestsPage() {
         }}
       >
         {quests.map((quest, index) => (
-          <div
+          <div id="quest-card"
             key={index}
             style={{
               border: "1px solid black",
@@ -50,8 +60,23 @@ export default function QuestsPage() {
               padding: "10px",
             }}
           >
-            <h2>{quest.summary}</h2>
-            <p>{quest.description}</p>
+            <div id="quest-header">
+              <h2>{quest.summary}</h2>
+            </div>
+            <div id="quest-summary">
+              <p>{quest.description}</p>
+            </div>
+            <div id="quest-stats"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <p>Status: {quest.status}</p>
+              <p>Experience Points: {quest.xp}</p>
+              <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+            </div>
           </div>
         ))}
       </div>
