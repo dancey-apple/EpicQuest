@@ -25,7 +25,6 @@ export default function NewQuest() {
             } else {
                 const error = await res.json();
                 alert(`Failed to create Quest. Error: ${error.message}`);
-            // Remove the extra closing curly brace
         }
     }
 
