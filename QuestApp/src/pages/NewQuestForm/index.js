@@ -7,7 +7,9 @@ export default function NewQuest() {
         event.preventDefault();
         const summary = document.getElementById("summary").value;
         const description = document.getElementById("description").value;
-        const xp = document.getElementById("xp").value;
+        const xp = parseInt(document.getElementById("xp").value);
+
+        console.log({ summary, description, xp });
 
         const res = await fetch("/api/quests", {
             method: "POST",
@@ -40,7 +42,7 @@ export default function NewQuest() {
                 justifyContent: "center",
                 alignItems: "center",
             }}>
-                <form style={{
+                <form onSubmit={createQuest} style={{
                     display: "flex",
                     flexDirection: "column",
                     height: "25vh",
@@ -50,47 +52,47 @@ export default function NewQuest() {
                     border: "1px solid black",
                     borderRadius: "10px",
                 }}>
-                <div id="summary" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    width: "75%",
-                }} required>
-                    <label htmlFor="summary">Summary</label>
-                    <input style={{
+                    <div style={{
                         display: "flex",
-                        margin: "0 0 0 10px",
-                    }}type="text" id="summary" name="summary" />
-                </div>
-                <div id="description" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    width: "75%",
-                }}>
-                    <label htmlFor="description">Description</label>
-                    <textarea style={{
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "75%",
+                    }} required>
+                        <label htmlFor="summary">Summary</label>
+                        <input style={{
+                            display: "flex",
+                            margin: "0 0 0 10px",
+                        }}type="text" id="summary" name="summary" />
+                    </div>
+                    <div style={{
                         display: "flex",
-                        margin: "0 0 0 10px",
-                    }}id="description" name="description" />
-                </div>
-                <div id="xp" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    width: "75%",
-                }}>
-                    <label htmlFor="xp">Experience Points</label>
-                    <input style={{
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "75%",
+                    }}>
+                        <label htmlFor="description">Description</label>
+                        <textarea style={{
+                            display: "flex",
+                            margin: "0 0 0 10px",
+                        }}id="description" name="description" />
+                    </div>
+                    <div style={{
                         display: "flex",
-                        margin: "0 0 0 10px",
-                    }}type="number" id="xp" name="xp" />
-                </div>
-                <button type="submit" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                }}>Create Quest</button>
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "75%",
+                    }}>
+                        <label htmlFor="xp">Experience Points</label>
+                        <input style={{
+                            display: "flex",
+                            margin: "0 0 0 10px",
+                        }}type="number" id="xp" name="xp" />
+                    </div>
+                    <button type="submit" style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                    }}>Create Quest</button>
                 </form>
             </div>
         </>

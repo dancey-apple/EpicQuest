@@ -31,6 +31,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "POST") {
     const { summary, description, xp } = req.body;
+    console.log({ summary, description, xp });
     try {
       const newQuest = await prisma.quests.create({
         data: {
