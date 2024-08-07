@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
+import { useRouter, userRouter } from "next/router";
 
 export default function QuestsPage() {
   const [quests, setQuests] = useState([]);
   const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  
+  
+  const router = useRouter();
+  const goToNewQuestForm = () => {
+    router.push("/NewQuestForm");
+  };
+
+
   useEffect(() => {
     async function loadData() {
       try {
@@ -32,7 +42,38 @@ export default function QuestsPage() {
 
   return (
     <>
-      <h1>Bountys</h1>
+      <div 
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          height: "50px",
+          margin: "0 0 10px 0",
+        }}>
+        <h1 style={{
+          margin: "0 auto 0 0",
+        }}>Bounties</h1>
+        <button onClick={goToNewQuestForm} style={{
+          backgroundColor: "#DFA878",
+        }}>New Quest</button>
+        <Popup trigger ={<button>(broken)New Quest</button>} position="right center" modal nested>
+          {close => (
+            <div id="new-quest-form">
+              <button onClick={close}>X</button>
+              <h2>New Quest</h2>
+              <form>
+                <label htmlFor="summary">Summary</label>
+                <input type="text" id="summary" name="summary" />
+                <label htmlFor="description">Description</label>
+                <textarea id="description" name="description" />
+                <label htmlFor="xp">Experience Points</label>
+                <input type="number" id="xp" name="xp" />
+                <button type="submit">Create Quest</button>
+              </form>
+            </div>
+            )}
+        </Popup>
+      </div>
       <div
         style={{
           display: "flex",
@@ -41,7 +82,7 @@ export default function QuestsPage() {
         }}
       >
         {quests.map((quest, index) => (
-          <div
+          <div id="quest-card"
             key={index}
             style={{
               border: "1px solid black",
@@ -50,8 +91,23 @@ export default function QuestsPage() {
               padding: "10px",
             }}
           >
-            <h2>{quest.summary}</h2>
-            <p>{quest.description}</p>
+            <div id="quest-header">
+              <h2>{quest.summary}</h2>
+            </div>
+            <div id="quest-summary">
+              <p>{quest.description}</p>
+            </div>
+            <div id="quest-stats"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <p>Status: {quest.status}</p>
+              <p>Experience Points: {quest.xp}</p>
+              <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+            </div>
           </div>
         ))}
       </div>
