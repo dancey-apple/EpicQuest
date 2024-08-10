@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import { useRouter, userRouter } from "next/router";
 
-export default function QuestsPage() {
+export default function Quests() {
   const [quests, setQuests] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
@@ -13,24 +13,46 @@ export default function QuestsPage() {
     router.push("/NewQuestForm");
   };
 
-
   useEffect(() => {
     async function loadData() {
       try {
-        const res = await fetch("/api/quests");
+        const res = await fetch("/api/quests");  
         if (!res.ok) {
           throw new Error(`Error: ${res.statusText}`);
         }
         const data = await res.json();
         setQuests(data.quests);
       } catch (error) {
-        setError(error.message); 
+        setError(error.message);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     }
     loadData();
   }, []);
+
+  const assignQuest = async (questId) => {
+    try {
+      const res = await fetch(`/api/assignQuest`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questId, assigneeId: 1 }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to assign quest");
+      }
+
+     
+      setQuests((prevQuests) => prevQuests.map((quest) => 
+        quest.id === questId ? { ...quest, assigneeId: 1 } : quest
+      ));
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -107,6 +129,9 @@ export default function QuestsPage() {
               <p>Status: {quest.status}</p>
               <p>Experience Points: {quest.xp}</p>
               <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+              <button onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
+              {quest.assigneeId ? "Assigned" : "Claim Quest"}
+              </button>
             </div>
           </div>
         ))}
