@@ -10,10 +10,20 @@ export default async function handler(req, res) {
           assigneeId: null, 
         },
         select: {
+          id: true,
           summary: true,
           description: true,
-          xp: true,
+          createdAt: true,
+          updatedAt: true,
           status: true,
+          xp: true,
+          assigneeId: true,
+          assignee: {
+            select: {
+              firstName: true,
+              lastName: true,
+            },
+          },
         },
       });
 
@@ -25,6 +35,25 @@ export default async function handler(req, res) {
     } finally {
       await prisma.$disconnect(); 
     }
+  } else if (req.method === "POST") {
+    const { summary, description, xp } = req.body;
+    console.log({ summary, description, xp });
+    try {
+      const newQuest = await prisma.quests.create({
+        data: {
+          summary,
+          description,
+          xp: parseInt(xp, 10),
+          status: "OPEN",
+        },
+      });
+      res.status(200).json({newQuest});
+    } catch (error) {
+      console.error("Error creating quest:", error);
+      res.status(500).json({ error: error.message });
+    } finally {
+      await prisma.$disconnect();
+  }
   } else {
     res.status(405).json({ message: "We only support GET requests" });
   }
