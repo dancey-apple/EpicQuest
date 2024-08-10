@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Quests() {
+export default function QuestsPage() {
   const [quests, setQuests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
