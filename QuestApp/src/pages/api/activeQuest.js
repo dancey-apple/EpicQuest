@@ -5,22 +5,25 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      const openQuests = await prisma.quests.findMany({
+      const questsWithAssignee = await prisma.quests.findMany({
         where: {
-          assigneeId: null, 
+          assigneeId: {
+            not: null, 
+          },
         },
         select: {
           summary: true,
           description: true,
           xp: true,
           status: true,
+          assigneeId: true, 
         },
       });
 
-      console.log("Fetched open quests:", openQuests);
-      res.status(200).json({ quests: openQuests });
+      
+      res.status(200).json({ quests: questsWithAssignee });
     } catch (error) {
-      console.error("Error fetching open quests:", error);
+      
       res.status(500).json({ error: "Error fetching quests data" });
     } finally {
       await prisma.$disconnect(); 

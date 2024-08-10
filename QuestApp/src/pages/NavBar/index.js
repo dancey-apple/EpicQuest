@@ -9,7 +9,7 @@ const NavBar = () => {
     }
 
     const goToMyQuests = () => {
-        router.push("/MyBounties");
+        router.push("/MyQuests");
     };
 
     return (

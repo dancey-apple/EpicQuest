@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 
-export default function QuestsPage() {
+export default function Quests() {
   const [quests, setQuests] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function loadData() {
       try {
-        const res = await fetch("/api/quests");
+        const res = await fetch("/api/quests");  
         if (!res.ok) {
           throw new Error(`Error: ${res.statusText}`);
         }
         const data = await res.json();
         setQuests(data.quests);
       } catch (error) {
-        setError(error.message); 
+        setError(error.message);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     }
     loadData();
@@ -32,7 +33,7 @@ export default function QuestsPage() {
 
   return (
     <>
-      <h1>Bountys</h1>
+      <h1>Open Quests</h1>
       <div
         style={{
           display: "flex",
@@ -52,6 +53,8 @@ export default function QuestsPage() {
           >
             <h2>{quest.summary}</h2>
             <p>{quest.description}</p>
+            <p>Status: {quest.status}</p>
+            <p>XP: {quest.xp}</p>
           </div>
         ))}
       </div>
