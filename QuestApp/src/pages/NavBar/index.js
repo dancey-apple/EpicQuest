@@ -12,6 +12,10 @@ const NavBar = () => {
         router.push("/MyQuests");
     };
 
+    const gotToMyStats = () => {
+        router.push("/MyStats");
+    };
+
     return (
         <nav className="NavBar" style={{
             display: "flex",
@@ -32,6 +36,7 @@ const NavBar = () => {
                 cursor: "pointer",
                 padding: "5px",
                 fontSize: "1.5em",
+                margin: "0 auto 0 0 ",
             }}>Open Quests</button>
             <button onClick={goToMyQuests} style = {{
                 backgroundColor: "#DFA878",
@@ -41,6 +46,15 @@ const NavBar = () => {
                 padding: "5px",
                 fontSize: "1.5em",
             }}>My Quests</button>
+            <button onClick={gotToMyStats} style = {{
+                backgroundColor: "#DFA878",
+                color: "black",
+                border: "none",
+                cursor: "pointer",
+                padding: "5px",
+                fontSize: "1.5em",
+                margin: "0 0 0 5px",
+            }}>My Stats</button>
         </nav>
     );
 }
