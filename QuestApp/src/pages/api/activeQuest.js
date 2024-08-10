@@ -16,14 +16,18 @@ export default async function handler(req, res) {
           description: true,
           xp: true,
           status: true,
-          assigneeId: true, 
+          assigneeId: true,
+          assignee: {  // Include the assignee details
+            select: {
+              firstName: true,
+              lastName: true,
+            },
+          },
         },
       });
 
-      
       res.status(200).json({ quests: questsWithAssignee });
     } catch (error) {
-      
       res.status(500).json({ error: "Error fetching quests data" });
     } finally {
       await prisma.$disconnect(); 

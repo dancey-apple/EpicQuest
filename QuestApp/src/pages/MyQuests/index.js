@@ -47,21 +47,32 @@ export default function MyQuest() {
         }}
       >
         {quests.map((quest, index) => (
-          <div
+          <div id="quest-card"
             key={index}
             style={{
               border: "1px solid black",
               borderRadius: "10px",
               margin: "10px",
               padding: "10px",
-              cursor: "pointer"
             }}
-            onClick={() => router.push(`/quests/${quest.id}`)}
           >
-            <h2>{quest.summary}</h2>
-            <p>{quest.description}</p>
-            <p>Status: {quest.status}</p>  
-            <p>XP: {quest.xp}</p>  
+            <div id="quest-header">
+              <h2>{quest.summary}</h2>
+            </div>
+            <div id="quest-summary">
+              <p>{quest.description}</p>
+            </div>
+            <div id="quest-stats"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <p>Status: {quest.status}</p>
+              <p>Experience Points: {quest.xp}</p>
+              <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+            </div>
           </div>
         ))}
       </div>
