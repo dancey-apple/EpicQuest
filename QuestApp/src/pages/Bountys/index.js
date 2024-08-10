@@ -23,6 +23,29 @@ export default function Quests() {
     loadData();
   }, []);
 
+  const assignQuest = async (questId) => {
+    try {
+      const res = await fetch(`/api/assignQuest`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questId, assigneeId: 1 }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to assign quest");
+      }
+
+     
+      setQuests((prevQuests) => prevQuests.map((quest) => 
+        quest.id === questId ? { ...quest, assigneeId: 1 } : quest
+      ));
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -55,6 +78,10 @@ export default function Quests() {
             <p>{quest.description}</p>
             <p>Status: {quest.status}</p>
             <p>XP: {quest.xp}</p>
+            <p>Assignee ID: {quest.assigneeId || "None"}</p>
+            <button onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
+              {quest.assigneeId ? "Assigned" : "Claim Quest"}
+            </button>
           </div>
         ))}
       </div>
