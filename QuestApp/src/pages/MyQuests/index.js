@@ -10,8 +10,7 @@ export default function MyQuest() {
 
   useEffect(() => {
     async function loadData() {
-      try {
-       
+      try {       
         const res = await fetch("/api/activeQuest");
         if (!res.ok) {
           throw new Error(`Error: ${res.statusText}`);
@@ -27,6 +26,25 @@ export default function MyQuest() {
     loadData();
   }, []);
 
+  const beginQuest = async (questId) => {
+    console.log(questId, status);
+    try {
+      const res = await fetch("/api/quests", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questId, status: "Active" }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to begin quest");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -56,12 +74,14 @@ export default function MyQuest() {
               padding: "10px",
               cursor: "pointer"
             }}
-            onClick={() => router.push(`/quests/${quest.id}`)}
+            //onClick={() => router.push(`/quests/${quest.id}`)} - WHY IS THIS HERE?
           >
             <h2>{quest.summary}</h2>
             <p>{quest.description}</p>
             <p>Status: {quest.status}</p>  
-            <p>XP: {quest.xp}</p>  
+            <p>XP: {quest.xp}</p>
+            <button onClick={() => beginQuest(quest.id)}>Begin Quest</button>
+            <button>Drop Quest</button>
           </div>
         ))}
       </div>
