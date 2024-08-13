@@ -45,7 +45,6 @@ export default function Quests() {
         throw new Error("Failed to assign quest");
       }
 
-     
       setQuests((prevQuests) => prevQuests.map((quest) => 
         quest.id === questId ? { ...quest, assigneeId: 1 } : quest
       ));
