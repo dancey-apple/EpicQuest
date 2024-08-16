@@ -54,10 +54,21 @@ export default function MyStats() {
                 border: "1px solid black",
                 borderRadius: "10px",
             }}>
-                <h2>Stats:</h2>
-                <p>Level: {stats.level}</p>
-                <p>XP: {stats.xp}</p>
-                <p>XP to next Level: ?</p>
+                <div id="title" style={{
+                    display: "flex",
+                    flexDirection: "row",
+                }}>
+                    <h2>Stats:</h2>
+                </div>
+                <div id="statistics" style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                }}>
+                    <p>Level: {stats.level}</p>
+                    <p>XP: {stats.xp}</p>
+                    <p>XP to next Level: ?</p>
+                </div>
             </div>
         </>
     );
