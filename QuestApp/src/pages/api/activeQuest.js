@@ -17,7 +17,7 @@ export default async function handler(req, res) {
           xp: true,
           status: true,
           assigneeId: true,
-          assignee: {  // Include the assignee details
+          assignee: { 
             select: {
               firstName: true,
               lastName: true,
