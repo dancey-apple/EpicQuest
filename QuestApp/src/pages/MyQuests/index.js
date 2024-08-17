@@ -98,7 +98,7 @@ export default function MyQuest() {
               padding: "10px",
               cursor: "pointer"
             }}
-            onClick={() => router.push(`/quests/${quest.id}`)}
+           
           >
             <h2>{quest.summary}</h2>
             <p>{quest.description}</p>
