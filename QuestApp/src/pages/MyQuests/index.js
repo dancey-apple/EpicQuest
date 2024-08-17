@@ -27,13 +27,55 @@ export default function MyQuest() {
     loadData();
   }, []);
 
+  const beginQuest = async (questId) => {
+    console.log(questId, status);
+    try {
+      const res = await fetch("/api/quests", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questId, status: "Active" }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to begin quest");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const unassignQuest = async (questId) => {
+    try {
+        const res = await fetch('/api/unassignQuest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ questId }),
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to unassign quest");
+        }
+
+        setQuests(currentQuests => currentQuests.map(quest =>
+            quest.id === questId ? { ...quest, assigneeId: null, assignee: null } : quest
+        ));
+    } catch (error) {
+        console.error('Error unassigning quest:', error);
+        setError(error.message);
+    }
+};
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
+    if (error) {
+        return <h1>Error: {error}</h1>;
+    }
 
   return (
     <>
@@ -56,12 +98,16 @@ export default function MyQuest() {
               padding: "10px",
               cursor: "pointer"
             }}
-            onClick={() => router.push(`/quests/${quest.id}`)}
           >
             <h2>{quest.summary}</h2>
             <p>{quest.description}</p>
-            <p>Status: {quest.status}</p>  
-            <p>XP: {quest.xp}</p>  
+            <p>Status: {quest.status}</p>
+            <p>Experience Points: {quest.xp}</p>
+            <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+                            {quest.assigneeId && (
+                                <button onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
+                            )}
+            <button onClick={() => beginQuest(quest.id)}>Begin Quest</button>
           </div>
         ))}
       </div>

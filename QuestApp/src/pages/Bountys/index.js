@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import { useRouter, userRouter } from "next/router";
 
-export default function Quests() {
+export default function QuestsPage() {
   const [quests, setQuests] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
@@ -33,26 +33,28 @@ export default function Quests() {
 
   const assignQuest = async (questId) => {
     try {
-      const res = await fetch(`/api/assignQuest`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ questId, assigneeId: 1 }),
-      });
+        const res = await fetch(`/api/assignQuest`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ questId, assigneeId: 1 }),
+        });
 
-      if (!res.ok) {
-        throw new Error("Failed to assign quest");
-      }
+        if (!res.ok) {
+            throw new Error("Failed to assign quest");
+        }
 
-     
-      setQuests((prevQuests) => prevQuests.map((quest) => 
-        quest.id === questId ? { ...quest, assigneeId: 1 } : quest
-      ));
+        const { quest } = await res.json();
+
+        setQuests(prevQuests => prevQuests.map(q => 
+            q.id === questId ? { ...q, ...quest } : q
+        ));
     } catch (error) {
-      setError(error.message);
+        console.error('Error assigning quest:', error);
+        setError(error.message);
     }
-  };
+};
 
   if (loading) {
     return <h1>Loading...</h1>;

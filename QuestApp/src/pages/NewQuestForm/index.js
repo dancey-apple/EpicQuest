@@ -22,6 +22,9 @@ export default function NewQuest() {
             if (res.ok) {
                 const result = await res.json();
                 alert("Quest created successfully!");
+                document.getElementById("summary").value = "";
+                document.getElementById("description").value = "";
+                document.getElementById("xp").value = "";
             } else {
                 const error = await res.json();
                 alert(`Failed to create Quest. Error: ${error.message}`);

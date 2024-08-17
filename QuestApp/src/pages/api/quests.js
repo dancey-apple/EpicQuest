@@ -27,7 +27,6 @@ export default async function handler(req, res) {
         },
       });
 
-     
       res.status(200).json({ quests: openQuests });
     } catch (error) {
       console.error("Error fetching open quests:", error);
@@ -36,24 +35,38 @@ export default async function handler(req, res) {
       await prisma.$disconnect(); 
     }
   } else if (req.method === "POST") {
-    const { summary, description, xp } = req.body;
-    console.log({ summary, description, xp });
+    const { summary, description, xp, questId, status } = req.body;
+    console.log({ summary, description, xp, questId, status });
     try {
-      const newQuest = await prisma.quests.create({
-        data: {
-          summary,
-          description,
-          xp: parseInt(xp, 10),
-          status: "OPEN",
-        },
+      if (summary && description && xp !== undefined) {
+        const newQuest = await prisma.quests.create({
+          data: {
+            summary,
+            description,
+            xp: parseInt(xp, 10),
+            status: "OPEN",
+          },
       });
       res.status(200).json({newQuest});
+    } else if (questId && status) {
+      const updatedQuest = await prisma.quests.update({
+        where: {
+          id: parseInt(questId, 10),
+        },
+        data: {
+          status,
+        },
+      });
+      res.status(200).json({ updatedQuest });
+      } else {
+        res.status(400).json({ message: "Missing questId or status fields" });
+      }
     } catch (error) {
       console.error("Error creating quest:", error);
       res.status(500).json({ error: error.message });
     } finally {
       await prisma.$disconnect();
-  }
+    }
   } else {
     res.status(405).json({ message: "We only support GET requests" });
   }
