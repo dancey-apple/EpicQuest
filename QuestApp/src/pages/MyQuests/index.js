@@ -98,7 +98,6 @@ export default function MyQuest() {
               padding: "10px",
               cursor: "pointer"
             }}
-           
           >
             <h2>{quest.summary}</h2>
             <p>{quest.description}</p>
