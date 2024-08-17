@@ -8,22 +8,23 @@ export default function MyQuest() {
   const [error, setError] = useState(null); 
   const router = useRouter();
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-       
-        const res = await fetch("/api/activeQuest");
-        if (!res.ok) {
-          throw new Error(`Error: ${res.statusText}`);
-        }
-        const data = await res.json();
-        setQuests(data.quests); 
-      } catch (error) {
-        setError(error.message); 
-      } finally {
-        setLoading(false); 
+  async function loadData() {
+    try {
+     
+      const res = await fetch("/api/activeQuest");
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
       }
+      const data = await res.json();
+      setQuests(data.quests); 
+    } catch (error) {
+      setError(error.message); 
+    } finally {
+      setLoading(false); 
     }
+  }
+
+  useEffect(() => {
     loadData();
   }, []);
 
@@ -44,6 +45,7 @@ export default function MyQuest() {
     } catch (error) {
       setError(error.message);
     }
+    loadData();
   };
 
   const unassignQuest = async (questId) => {
