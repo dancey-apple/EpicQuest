@@ -12,6 +12,7 @@ export default async function handler(req, res) {
           },
         },
         select: {
+          id: true,
           summary: true,
           description: true,
           xp: true,
