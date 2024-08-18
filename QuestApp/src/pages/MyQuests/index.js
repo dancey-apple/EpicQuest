@@ -8,22 +8,24 @@ export default function MyQuest() {
   const [error, setError] = useState(null); 
   const router = useRouter();
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-       
-        const res = await fetch("/api/activeQuest");
-        if (!res.ok) {
-          throw new Error(`Error: ${res.statusText}`);
-        }
-        const data = await res.json();
-        setQuests(data.quests); 
-      } catch (error) {
-        setError(error.message); 
-      } finally {
-        setLoading(false); 
+  async function loadData() {
+    try {
+     
+      const res = await fetch("/api/activeQuest");
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
       }
+      const data = await res.json();
+      setQuests(data.quests); 
+    } catch (error) {
+      setError(error.message); 
+    } finally {
+      setLoading(false); 
     }
+  }
+
+  useEffect(() => {
+    
     loadData();
   }, []);
 
@@ -44,30 +46,42 @@ export default function MyQuest() {
     } catch (error) {
       setError(error.message);
     }
+    loadData();
   };
 
-  const unassignQuest = async (questId) => {
-    try {
-        const res = await fetch('/api/unassignQuest', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ questId }),
-        });
+// This asynchronous function unassigns a quest by setting its `assigneeId` to null.
+const unassignQuest = async (questId) => {
+  try {
+      // Makes a POST request to the server endpoint '/api/unassignQuest' with the `questId`.
+      const res = await fetch('/api/unassignQuest', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ questId }), // Sending `questId` in the request body.
+      });
 
-        if (!res.ok) {
-            throw new Error("Failed to unassign quest");
-        }
+      // Checks if the HTTP response status indicates a failure.
+      if (!res.ok) {
+          // If the response is not OK, throws a new Error with a message.
+          throw new Error(`Failed to unassign quest: ${res.status} ${res.statusText}`);
+      }
 
-        setQuests(currentQuests => currentQuests.map(quest =>
-            quest.id === questId ? { ...quest, assigneeId: null, assignee: null } : quest
-        ));
-    } catch (error) {
-        console.error('Error unassigning quest:', error);
-        setError(error.message);
-    }
+      // Parses the JSON response to use in updating the state.
+      const updatedQuestData = await res.json();
+
+      // Updates the local state to reflect the change, setting `assigneeId` and `assignee` to null for the updated quest.
+      setQuests(currentQuests => currentQuests.map(quest =>
+          quest.id === questId ? { ...quest, ...updatedQuestData.quest, assigneeId: null, assignee: null } : quest
+      ));
+  } catch (error) {
+      // Logs any errors that occur during the fetch request or while updating the state.
+      console.error('Error unassigning quest:', error);
+      setError(error.message);  // Updates the state to reflect the error, assuming `setError` is defined elsewhere.
+  }
+  loadData();
 };
+
 
   if (loading) {
     return <h1>Loading...</h1>;

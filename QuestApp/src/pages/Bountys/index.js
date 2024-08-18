@@ -13,21 +13,23 @@ export default function QuestsPage() {
     router.push("/NewQuestForm");
   };
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const res = await fetch("/api/quests");  
-        if (!res.ok) {
-          throw new Error(`Error: ${res.statusText}`);
-        }
-        const data = await res.json();
-        setQuests(data.quests);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+  async function loadData() {
+    try {
+      const res = await fetch("/api/quests");  
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
       }
+      const data = await res.json();
+      setQuests(data.quests);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  useEffect(() => {
+
     loadData();
   }, []);
 
@@ -54,6 +56,7 @@ export default function QuestsPage() {
         console.error('Error assigning quest:', error);
         setError(error.message);
     }
+    loadData();
 };
 
   if (loading) {
