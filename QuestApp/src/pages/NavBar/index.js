@@ -1,5 +1,8 @@
 import { useRouter, userRouter } from 'next/router';
 import React from 'react';
+import { SiSidequest,SiGiLevelThree } from 'react-icons/si';
+import { CgAssign} from 'react-icons/cg';
+
 
 const NavBar = () => {
     const router = useRouter();
@@ -12,51 +15,28 @@ const NavBar = () => {
         router.push("/MyQuests");
     };
 
-    const gotToMyStats = () => {
+    const goToMyStats = () => {
         router.push("/MyStats");
     };
 
     return (
-        <nav className="NavBar" style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px",
-            backgroundColor: "#6C3428",
-            position: "fixed",
-            top: "0",
-            left: "0",
-            right: "0",
-            }}>
-            <button onClick={goToBountyBoard} style = {{
-                backgroundColor: "#DFA878",
-                color: "black",
-                border: "none",
-                cursor: "pointer",
-                padding: "5px",
-                fontSize: "1.5em",
-                margin: "0 auto 0 0 ",
-            }}>Open Quests</button>
-            <button onClick={goToMyQuests} style = {{
-                backgroundColor: "#DFA878",
-                color: "black",
-                border: "none",
-                cursor: "pointer",
-                padding: "5px",
-                fontSize: "1.5em",
-            }}>My Quests</button>
-            <button onClick={gotToMyStats} style = {{
-                backgroundColor: "#DFA878",
-                color: "black",
-                border: "none",
-                cursor: "pointer",
-                padding: "5px",
-                fontSize: "1.5em",
-                margin: "0 0 0 5px",
-            }}>My Stats</button>
+        <nav className="fixed top-0 left-0 h-screen w-16 flex flex-col bg-yellow-900 p-2.5 shadow-2xl">
+            <SideBarIcon icon={<SiSidequest size='28' />} onClick={goToBountyBoard}/>
+            <SideBarIcon icon={<CgAssign size='28' />} onClick={goToMyQuests}/>
+            <SideBarIcon icon={<SiGiLevelThree size='28' />} onClick={goToMyStats}/>
         </nav>
     );
-}
+};
+
+const SideBarIcon = ({ icon, text = 'tooltip' }) => {
+    return (
+        <div className='sidebar-icon'>
+            {icon}
+            <span class="sidebar-tooltip">
+                {text}
+            </span>
+        </div>
+    );
+};
 
 export default NavBar;

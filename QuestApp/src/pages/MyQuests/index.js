@@ -10,7 +10,6 @@ export default function MyQuest() {
 
   async function loadData() {
     try {
-     
       const res = await fetch("/api/activeQuest");
       if (!res.ok) {
         throw new Error(`Error: ${res.statusText}`);
@@ -82,7 +81,7 @@ export default function MyQuest() {
   return (
     <>
         <NavBar></NavBar>
-      <h1>Active Bounty</h1>
+      <h1 class='font-bold text-4xl mt-16'>My Quests</h1>
       <div
         style={{
           display: "flex",
