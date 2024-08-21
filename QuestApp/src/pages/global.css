@@ -10,7 +10,7 @@
 
 body {
     color: black;
-    background: beige;
+    background: #001524;
 }
 
 @layer utilities {
