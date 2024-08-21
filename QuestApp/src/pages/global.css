@@ -2,28 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .sidbar-icon {
-        @apply relative flex items-center justify-center h-12 w-12 mx-auto bg-secondary text-black hover:bg-black hover:text-secondary;
-    }
+@layer pages {
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-    --foreground-rgb: 235, 211, 248;
-    --background-start-rgb: 174, 210, 255;
-    --background-end-rgb: 39, 0, 93;
-    }
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: black;
+    background: beige;
 }
 
 @layer utilities {

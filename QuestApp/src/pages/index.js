@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 
 export default function BountyBoard() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main>
       <NavBar />
       <h1 style = {{
           textAlign: "center",
