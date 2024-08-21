@@ -29,9 +29,9 @@ const NavBar = () => {
     );
 };
 
-const SideBarIcon = ({ icon, text }) => {
+const SideBarIcon = ({ icon, text, onClick }) => {
     return (
-        <div className='sidebar-icon flex flex-row group text-black hover:text-secondary m-2 py-2.5'>
+        <div className='sidebar-icon flex flex-row group text-black hover:text-secondary m-2 py-2.5' onClick={onClick}>
             {icon}
             <span className='sidebar-tooltip absolute w-auto p-2 m-4 min-w-max left-14 rounded-md shadow-md text-black bg-secondary text-xs font-bold transition-all duration-100 scale-0 origin-left group-hover:scale-100'>{text}</span>
         </div>
