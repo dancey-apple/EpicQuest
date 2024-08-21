@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./Bountys";
+import QuestPage from "./Bountys";
 import NavBar from "./NavBar";
 
 
@@ -11,7 +11,7 @@ export default function BountyBoard() {
           textAlign: "center",
           margin: "75px 0 0 0",
       }}>Bounty Board</h1>
-      <Home />
+      <QuestPage />
     </main>
   );
 }
