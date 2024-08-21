@@ -92,7 +92,7 @@ export default function QuestsPage() {
         {quests.map((quest, index) => (
           <div id="quest-card"
             key={index}
-            class="max-w-sm rounded overflow-hidden drop-shadow-lg rounded-xl hover:max-w-lg transition-all duration-300 bg-yellow-900 text-secondary gap-4">
+            class="max-w-sm rounded overflow-hidden drop-shadow-lg rounded-xl hover:max-w-md transition-all duration-300 bg-yellow-900 text-secondary gap-4">
             <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
             <div id="quest-header" className='p-3'>
               <h2 className='font-bold text-lg'>{quest.summary}</h2>
@@ -114,8 +114,8 @@ export default function QuestsPage() {
                 <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
               </div>
             </div>
-            <div id="claimcontainer" className='flex flex-row justify-center mb-4'>
-              <button className='' onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
+            <div id="claimcontainer" className='flex flex-row justify-center mb-4 drop-shadow-gl'>
+              <button className='hover:font-bold hover:text-glow' onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
                 {quest.assigneeId ? "Assigned" : "Claim Quest"}
                 </button>
             </div>
