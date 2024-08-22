@@ -45,30 +45,36 @@ export default function MyQuest() {
       setError(error.message);
     }
     loadData();
+    loadData();
   };
 
-  const unassignQuest = async (questId) => {
-    try {
-        const res = await fetch('/api/unassignQuest', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ questId }),
-        });
 
-        if (!res.ok) {
-            throw new Error("Failed to unassign quest");
-        }
+const unassignQuest = async (questId) => {
+  try {
+      const res = await fetch('/api/unassignQuest', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ questId }),
+      });
 
-        setQuests(currentQuests => currentQuests.map(quest =>
-            quest.id === questId ? { ...quest, assigneeId: null, assignee: null } : quest
-        ));
-    } catch (error) {
-        console.error('Error unassigning quest:', error);
-        setError(error.message);
-    }
+      if (!res.ok) {
+
+          throw new Error(`Failed to unassign quest: ${res.status} ${res.statusText}`);
+      }
+      const updatedQuestData = await res.json();
+
+      setQuests(currentQuests => currentQuests.map(quest =>
+          quest.id === questId ? { ...quest, ...updatedQuestData.quest, assigneeId: null, assignee: null } : quest
+      ));
+  } catch (error) {
+      console.error('Error unassigning quest:', error);
+      setError(error.message); 
+  }
+  loadData();
 };
+
 
   if (loading) {
     return <h1>Loading...</h1>;
