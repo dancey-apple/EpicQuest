@@ -92,7 +92,7 @@ const unassignQuest = async (questId) => {
         {quests.map((quest, index) => (
           <div
             key={index}
-            className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:max-w-md transition-all duration-300 bg-yellow-900 text-secondary gap-4'>
+            className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4'>
             <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
             <div id="quest-header" className='p-3'>
               <h2 className='font-bold text-lg'>{quest.summary}</h2>
@@ -114,11 +114,11 @@ const unassignQuest = async (questId) => {
                 <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
               </div>
             </div>
-            <div className='flex flex-row justify-around drop-shadow-gl'>
+            <div className='flex flex-row justify-around m-4'>
               {quest.assigneeId && (
-                  <button className='hover:font-bold hover:text-glow' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
+                  <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
                 )}
-              <button className='hover:font-bold hover:text-glow' onClick={() => beginQuest(quest.id)}>Begin Quest</button>
+              <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => beginQuest(quest.id)}>Begin Quest</button>
             </div>
           </div>
         ))}

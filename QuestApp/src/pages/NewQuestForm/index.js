@@ -34,67 +34,24 @@ export default function NewQuest() {
     return(
         <>
             <NavBar />
-            <h1 style={{
-                textAlign: "center",
-                margin: "75px 0 25px 0",
-            }}>New Quest</h1>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-            }}>
-                <form onSubmit={createQuest} style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "25vh",
-                    width: "50vw",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    border: "1px solid black",
-                    borderRadius: "10px",
-                }}>
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        width: "75%",
-                    }} required>
+            <h1 className='text-center font-bold text-4xl m-4 text-secondary hover:text-glow hover:drop-shadow-gl'>New Quest</h1>
+            <div className='flex flex-col justify-center px-96'>
+                <form onSubmit={createQuest} className='flex flex-col justify-around border-2 border-secondary rounded-xl h-96'>
+                    <div className='flex flex-row justify-center text-lg text-secondary' required>
                         <label htmlFor="summary">Summary</label>
-                        <input style={{
-                            display: "flex",
-                            margin: "0 0 0 10px",
-                        }}type="text" id="summary" name="summary" />
+                        <input className='bg-secondary text-primary font-bold ml-4' type="text" id="summary" name="summary" />
                     </div>
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        width: "75%",
-                    }}>
+                    <div className='flex flex-row justify-center text-lg text-secondary'>
                         <label htmlFor="description">Description</label>
-                        <textarea style={{
-                            display: "flex",
-                            margin: "0 0 0 10px",
-                        }}id="description" name="description" />
+                        <textarea className='bg-secondary text-primary font-bold ml-4' id="description" name="description" />
                     </div>
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        width: "75%",
-                    }}>
+                    <div className='flex flex-row justify-center text-lg text-secondary'>
                         <label htmlFor="xp">Experience Points</label>
-                        <input style={{
-                            display: "flex",
-                            margin: "0 0 0 10px",
-                        }}type="number" id="xp" name="xp" />
+                        <input className='bg-secondary text-primary font-bold ml-4' type="number" id="xp" name="xp" />
                     </div>
-                    <button type="submit" style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                    }}>Create Quest</button>
+                    <div className='flex flex-row justify-center'>
+                        <button type="submit" className='bg-secondary text-lg font-bold text-primary rounded-xl px-10 py-2 hover:py-3 hover:px-11 hover:bg-glow hover:drop-shadow-gl hover:text-purple-950'>Create Quest</button>
+                    </div>
                 </form>
             </div>
         </>

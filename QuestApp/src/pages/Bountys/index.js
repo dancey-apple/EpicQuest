@@ -70,7 +70,7 @@ export default function QuestsPage() {
   return (
     <>
       <div className='flex flex-row justify-end mb-4'>
-        <button onClick={goToNewQuestForm} className='bg-secondary p-2 font-bold rounded-xl  hover:text-purple-950 hover:drop-shadow-gl hover:bg-glow hover:w-40 transition-all duration-300'>New Quest</button>
+        <button onClick={goToNewQuestForm} className='bg-secondary p-2 font-bold rounded-xl text-primary hover:text-purple-950 hover:drop-shadow-gl hover:bg-glow hover:w-40 transition-all duration-300'>New Quest</button>
         <Popup trigger ={<button>(broken)New Quest</button>} position="right center" modal nested>
           {close => (
             <div id="new-quest-form" className='bg-primary text-secondary max-h-screen w-96 rounded-md drop-shadow-lg'>
@@ -95,7 +95,7 @@ export default function QuestsPage() {
         {quests.map((quest, index) => (
           <div id="quest-card"
             key={index}
-            class="max-w-sm rounded overflow-hidden drop-shadow-lg rounded-xl hover:max-w-md transition-all duration-300 bg-yellow-900 text-secondary gap-4">
+            class="max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4">
             <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
             <div id="quest-header" className='p-3'>
               <h2 className='font-bold text-lg'>{quest.summary}</h2>
@@ -117,8 +117,8 @@ export default function QuestsPage() {
                 <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
               </div>
             </div>
-            <div id="claimcontainer" className='flex flex-row justify-center mb-4 drop-shadow-gl'>
-              <button className='hover:font-bold hover:text-glow' onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
+            <div id="claimcontainer" className='flex flex-row justify-center m-4'>
+              <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
                 {quest.assigneeId ? "Assigned" : "Claim Quest"}
                 </button>
             </div>
