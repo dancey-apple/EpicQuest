@@ -69,31 +69,21 @@ export default function QuestsPage() {
 
   return (
     <>
-      <div 
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          height: "50px",
-          margin: "0 0 10px 0",
-        }}>
-        <h1 style={{
-          margin: "0 auto 0 0",
-        }}>Bounties</h1>
-        <button onClick={goToNewQuestForm} style={{
-          backgroundColor: "#DFA878",
-        }}>New Quest</button>
+      <div className='flex flex-row justify-end mb-4'>
+        <button onClick={goToNewQuestForm} className='bg-secondary p-2 font-bold rounded-xl  hover:text-purple-950 hover:drop-shadow-gl hover:bg-glow hover:w-40 transition-all duration-300'>New Quest</button>
         <Popup trigger ={<button>(broken)New Quest</button>} position="right center" modal nested>
           {close => (
-            <div id="new-quest-form">
-              <button onClick={close}>X</button>
-              <h2>New Quest</h2>
-              <form>
+            <div id="new-quest-form" className='bg-primary text-secondary max-h-screen w-96 rounded-md drop-shadow-lg'>
+              <div className='flex flex-row justify-end'>
+                <h2 className='p-2 mr-auto font-bold text-lg'>New Quest</h2>
+                <button onClick={close} className='bg-yellow-200 m-4 p-1 rounded-sm'>X</button>
+              </div>
+              <form className='flex flex-col p-3'>
                 <label htmlFor="summary">Summary</label>
                 <input type="text" id="summary" name="summary" />
                 <label htmlFor="description">Description</label>
                 <textarea id="description" name="description" />
-                <label htmlFor="xp">Experience Points</label>
+                <label htmlFor="xp">XP</label>
                 <input type="number" id="xp" name="xp" />
                 <button type="submit">Create Quest</button>
               </form>
@@ -101,42 +91,36 @@ export default function QuestsPage() {
             )}
         </Popup>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "10px",
-        }}
-      >
+      <div className='flex flex-row flex-wrap gap-4 ml-28'>
         {quests.map((quest, index) => (
           <div id="quest-card"
             key={index}
-            style={{
-              border: "1px solid black",
-              borderRadius: "10px",
-              margin: "10px",
-              padding: "10px",
-            }}
-          >
-            <div id="quest-header">
-              <h2>{quest.summary}</h2>
+            class="max-w-sm rounded overflow-hidden drop-shadow-lg rounded-xl hover:max-w-md transition-all duration-300 bg-yellow-900 text-secondary gap-4">
+            <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+            <div id="quest-header" className='p-3'>
+              <h2 className='font-bold text-lg'>{quest.summary}</h2>
             </div>
-            <div id="quest-summary">
+            <div id="quest-summary" className='p-3'>
               <p>{quest.description}</p>
             </div>
-            <div id="quest-stats"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <p>Status: {quest.status}</p>
-              <p>Experience Points: {quest.xp}</p>
-              <p>Assignee: {quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
-              <button onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
-              {quest.assigneeId ? "Assigned" : "Claim Quest"}
-              </button>
+            <div id="quest-stats" className='grid grid-cols-3 p-3 justify-between'>
+              <div className='flex flex-row'>
+                <p className='font-bold'>Status: </p>
+                <p className='px-2'>{quest.status}</p>
+              </div>
+              <div className='flex flex-row'>
+                <p className='font-bold'>XP: </p>
+                <p className='px-2'>{quest.xp}</p>
+              </div>
+              <div className='flex flex-row flex-wrap border-solid border-black'>
+                <p className='font-bold'>Assignee: </p>
+                <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+              </div>
+            </div>
+            <div id="claimcontainer" className='flex flex-row justify-center mb-4 drop-shadow-gl'>
+              <button className='hover:font-bold hover:text-glow' onClick={() => assignQuest(quest.id)} disabled={quest.assigneeId !== null}>
+                {quest.assigneeId ? "Assigned" : "Claim Quest"}
+                </button>
             </div>
           </div>
         ))}

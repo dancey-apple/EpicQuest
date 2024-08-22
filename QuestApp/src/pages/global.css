@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer pages {
+}
+
+@media (prefers-color-scheme: dark) {
+}
+
+body {
+    color: black;
+    background: #001524;
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}

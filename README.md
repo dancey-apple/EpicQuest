@@ -1,6 +1,8 @@
 # EpicQuest
 A Gamified Productivity App
 
+after installing nextjs make sure to install the popup package: `npm i reactjs-popup` - install the popup package
+
 ### Necissary Features
 
 - Tasks/"Quests" to be completed
