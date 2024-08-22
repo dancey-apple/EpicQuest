@@ -40,6 +40,8 @@ export default function MyQuest() {
 
       if (!res.ok) {
         throw new Error("Failed to begin quest");
+      }else{
+        alert("NEW ACHIEVMENT! You just marked this quest as active. Now go finish it, you lazy bum.");
       }
     } catch (error) {
       setError(error.message);
@@ -62,6 +64,8 @@ const unassignQuest = async (questId) => {
       if (!res.ok) {
 
           throw new Error(`Failed to unassign quest: ${res.status} ${res.statusText}`);
+      }else{
+        alert("NEW ACHIEVMENT! You gave up on a quest. You have lost 10 XP.");
       }
       const updatedQuestData = await res.json();
 
