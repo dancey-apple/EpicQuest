@@ -21,7 +21,7 @@ export default function NewQuest() {
 
             if (res.ok) {
                 const result = await res.json();
-                alert("Quest created successfully!");
+                alert("NEW ACHIEVEMENT! You have created a new quest. Don't be a jerk and make someone else do it. Go claim it for yourself.");
                 document.getElementById("summary").value = "";
                 document.getElementById("description").value = "";
                 document.getElementById("xp").value = "";
@@ -37,17 +37,17 @@ export default function NewQuest() {
             <h1 className='text-center font-bold text-4xl m-4 text-secondary hover:text-glow hover:drop-shadow-gl'>New Quest</h1>
             <div className='flex flex-col justify-center px-96'>
                 <form onSubmit={createQuest} className='flex flex-col justify-around border-2 border-secondary rounded-xl h-96'>
-                    <div className='flex flex-row justify-center text-lg text-secondary' required>
+                    <div className='flex flex-row justify-center mx-4 text-lg text-secondary' required>
                         <label htmlFor="summary">Summary</label>
-                        <input className='bg-secondary text-primary font-bold ml-4' type="text" id="summary" name="summary" />
+                        <input className='bg-secondary text-primary flex-grow font-bold ml-4' type="text" id="summary" name="summary" />
                     </div>
-                    <div className='flex flex-row justify-center text-lg text-secondary'>
+                    <div className='flex flex-col justify-left text-lg text-secondary m-4'>
                         <label htmlFor="description">Description</label>
-                        <textarea className='bg-secondary text-primary font-bold ml-4' id="description" name="description" />
+                        <textarea className='bg-secondary text-primary font-bold rounded-sm flex-grow' id="description" name="description" />
                     </div>
-                    <div className='flex flex-row justify-center text-lg text-secondary'>
+                    <div className='flex flex-row mx-4 justify-center text-lg text-secondary'>
                         <label htmlFor="xp">Experience Points</label>
-                        <input className='bg-secondary text-primary font-bold ml-4' type="number" id="xp" name="xp" />
+                        <input className='bg-secondary text-primary flex-grow font-bold ml-4' type="number" id="xp" name="xp" />
                     </div>
                     <div className='flex flex-row justify-center'>
                         <button type="submit" className='bg-secondary text-lg font-bold text-primary rounded-xl px-10 py-2 hover:py-3 hover:px-11 hover:bg-glow hover:drop-shadow-gl hover:text-purple-950'>Create Quest</button>

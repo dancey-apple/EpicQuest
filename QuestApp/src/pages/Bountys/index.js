@@ -45,6 +45,8 @@ export default function QuestsPage() {
 
         if (!res.ok) {
             throw new Error("Failed to assign quest");
+        }else{
+          alert("NEW ACHIEVMENT! You just claimed a quest. You can find your quests in the 'My Quests' tab.");
         }
 
         const { quest } = await res.json();
