@@ -37,37 +37,24 @@ export default function MyStats() {
     return (
         <>
             <NavBar />
-            <div id= "UserHeader" style={{
-                display: "flex",
-                flexDirection: "row",
-                margin: "75px 0 0 0",
-            }}>
-                <h1 style={{
-                display: "flex",
-                }}>User: </h1>
+            <div id= "UserHeader" className='flex flex-row justify-center text-4xl text-secondary hover:text-glow hover:drop-shadow-gl transition-all duration-300 my-5'>
+                <h1>Adventurer: </h1>
                 <h1>{stats.username}</h1>
             </div>
-            <div id="stats" style={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
-            }}>
-                <div id="title" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                }}>
-                    <h2>Stats:</h2>
-                </div>
-                <div id="statistics" style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-evenly",
-                }}>
-                    <p>Level: {stats.level}</p>
-                    <p>XP: {stats.xp}</p>
-                    <p>XP to next Level: ?</p>
+            <div className='max-w-full overflow-hidden drop-shadow-lg rounded-xl  transition-all duration-300 bg-yellow-900 text-secondary gap-4 ml-28 mr-4 h-fit' >
+                <div className='flex flex-row'>
+                    <img src='https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/mage.png?raw=true' className='max-w-52 h-fit mr-4'/>
+                    <div className='flex flex-col'>
+                        <div>
+                            <h2 className='font-bold text-2xl drop-shadow-gl'>Stats:</h2>
+                        </div>
+                        <div className='border-solid bg-secondary h-1 drop-shadow-gl'></div>
+                        <div id="statistics">
+                            <p>Level: {stats.level}</p>
+                            <p>XP: {stats.xp}</p>
+                            <p>XP to next Level: ?</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
