@@ -47,6 +47,27 @@ export default function MyQuest() {
       setError(error.message);
     }
     loadData();
+  };
+
+  const completeQuest = async (questId) => {
+    console.log(questId, status);
+    try {
+      const res = await fetch("/api/quests", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ questId, status: "Completed", xp}),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to complete quest");
+      }else{
+        alert("NEW ACHIEVMENT! You just completed a quest! Here's a cookie.");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
     loadData();
   };
 
@@ -123,6 +144,7 @@ const unassignQuest = async (questId) => {
                   <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
                 )}
               <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => beginQuest(quest.id)}>Begin Quest</button>
+              <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => completeQuest(quest.id)}>Complete Quest</button>
             </div>
           </div>
         ))}
