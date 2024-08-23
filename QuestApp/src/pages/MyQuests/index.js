@@ -49,7 +49,7 @@ export default function MyQuest() {
     loadData();
   };
 
-  const completeQuest = async (questId) => {
+  const completeQuest = async (questId,  questXP, userId) => {
     console.log(questId, status);
     try {
       const res = await fetch("/api/quests", {
@@ -57,7 +57,7 @@ export default function MyQuest() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ questId, status: "Completed", xp}),
+        body: JSON.stringify({ questId, status: "Completed", questXP, userId}),
       });
 
       if (!res.ok) {
