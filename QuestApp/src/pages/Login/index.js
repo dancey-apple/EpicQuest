@@ -13,12 +13,12 @@ function Login() {
   return (
     <>
     <NavBar></NavBar>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="p-8 bg-white shadow-lg rounded-lg max-w-md w-full">
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="p-8 bg-yellow-900 drop-shadow-gl rounded-lg max-w-md w-full">
           <h1 className="text-2xl font-bold text-center text-secondary mb-6">Login</h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+              <label htmlFor="username" className="block text-sm font-medium text-secondary">Username</label>
               <input
                 type="text"
                 id="username"
@@ -29,7 +29,7 @@ function Login() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-secondary">Password</label>
               <input
                 type="password"
                 id="password"
@@ -39,7 +39,7 @@ function Login() {
                 required
               />
             </div>
-            <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+            <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary bg-secondary hover:bg-glow hover:drop-shadow-gl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
               Login
             </button>
           </form>
