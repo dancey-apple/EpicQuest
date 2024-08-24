@@ -4,6 +4,7 @@ import { SiSidequest} from 'react-icons/si';
 import { CgAssign } from 'react-icons/cg';
 import { GiSkills } from 'react-icons/gi';
 import { MdAddCircle } from 'react-icons/md';
+import { IoMdLogOut } from "react-icons/io";
 
 
 const NavBar = () => {
@@ -31,8 +32,8 @@ const NavBar = () => {
             <SideBarIcon icon={<CgAssign size='45' />} text='My Quests' onClick={goToMyQuests}/>
             <SideBarIcon icon={<GiSkills size='45' />} text='My Stats' onClick={goToMyStats}/>
             <SideBarIcon icon={<MdAddCircle size='45' />} text='New Quest' onClick={() => router.push("/NewQuestForm")}/>
-            <div>
-                <button onClick={goToLogin}>Log Out</button>
+            <div className="mt-auto">
+            <SideBarIcon icon={<IoMdLogOut size='45' />} text='Logout' onClick={goToLogin}/>
             </div>
         </nav>
     );
