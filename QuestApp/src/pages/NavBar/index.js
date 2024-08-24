@@ -27,6 +27,9 @@ const NavBar = () => {
             <SideBarIcon icon={<CgAssign size='45' />} text='My Quests' onClick={goToMyQuests}/>
             <SideBarIcon icon={<GiSkills size='45' />} text='My Stats' onClick={goToMyStats}/>
             <SideBarIcon icon={<MdAddCircle size='45' />} text='New Quest' onClick={() => router.push("/NewQuestForm")}/>
+            <div>
+                <button>Log Out</button>
+            </div>
         </nav>
     );
 };
