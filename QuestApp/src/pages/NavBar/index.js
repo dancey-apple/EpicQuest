@@ -21,12 +21,19 @@ const NavBar = () => {
         router.push("/MyStats");
     };
 
+    const goToLogin = () => {
+        router.push("/Login");
+    };
+
     return (
         <nav className="fixed top-0 left-0 h-screen w-20 flex flex-col bg-yellow-900 p-2.5 shadow-2xl z-10">
             <SideBarIcon icon={<SiSidequest size='45' />} text='Bounty Board' onClick={goToBountyBoard}/>
             <SideBarIcon icon={<CgAssign size='45' />} text='My Quests' onClick={goToMyQuests}/>
             <SideBarIcon icon={<GiSkills size='45' />} text='My Stats' onClick={goToMyStats}/>
             <SideBarIcon icon={<MdAddCircle size='45' />} text='New Quest' onClick={() => router.push("/NewQuestForm")}/>
+            <div>
+                <button onClick={goToLogin}>Log Out</button>
+            </div>
         </nav>
     );
 };
