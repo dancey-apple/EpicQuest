@@ -2,15 +2,16 @@ import { useRouter, userRouter } from 'next/router';
 import React from 'react';
 import { SiSidequest} from 'react-icons/si';
 import { CgAssign } from 'react-icons/cg';
-import { GiSkills } from 'react-icons/gi';
+import { GiSkills, GiAbstract054 } from 'react-icons/gi';
 import { MdAddCircle } from 'react-icons/md';
+import { IoMdLogOut } from "react-icons/io";
 
 
 const NavBar = () => {
     const router = useRouter();
     
     const goToBountyBoard = () => {
-        router.push("/");
+        router.push("/Bountys");
     }
 
     const goToMyQuests = () => {
@@ -27,12 +28,13 @@ const NavBar = () => {
 
     return (
         <nav className="fixed top-0 left-0 h-screen w-20 flex flex-col bg-yellow-900 p-2.5 shadow-2xl z-10">
+            <SideBarIcon icon={<GiAbstract054 size='45' />} text='Home' onClick={() => router.push("/")}/>
             <SideBarIcon icon={<SiSidequest size='45' />} text='Bounty Board' onClick={goToBountyBoard}/>
             <SideBarIcon icon={<CgAssign size='45' />} text='My Quests' onClick={goToMyQuests}/>
             <SideBarIcon icon={<GiSkills size='45' />} text='My Stats' onClick={goToMyStats}/>
             <SideBarIcon icon={<MdAddCircle size='45' />} text='New Quest' onClick={() => router.push("/NewQuestForm")}/>
-            <div>
-                <button onClick={goToLogin}>Log Out</button>
+            <div className='mt-auto'>
+                <SideBarIcon icon={<IoMdLogOut size='45' />} text='Log Out' onClick={() => router.push("/Login")}/>
             </div>
         </nav>
     );

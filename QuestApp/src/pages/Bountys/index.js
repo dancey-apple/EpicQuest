@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import { useRouter, userRouter } from "next/router";
+import NavBar from "../NavBar";
 
 export default function QuestsPage() {
   const [quests, setQuests] = useState([]);
@@ -71,6 +72,7 @@ export default function QuestsPage() {
 
   return (
     <>
+      <NavBar />
       <div className='flex flex-row justify-end mb-4'>
         <button onClick={goToNewQuestForm} className='bg-secondary p-2 font-bold rounded-xl text-primary hover:text-purple-950 hover:drop-shadow-gl hover:bg-glow hover:w-40 transition-all duration-300'>New Quest</button>
         <Popup trigger ={<button>(broken)New Quest</button>} position="right center" modal nested>

@@ -77,7 +77,6 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
-const { PrismaClient } = require("@prisma/client");
 
 
 async function main() {
