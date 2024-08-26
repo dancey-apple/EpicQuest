@@ -5,7 +5,6 @@ import { CgAssign } from 'react-icons/cg';
 import { GiSkills, GiAbstract054 } from 'react-icons/gi';
 import { MdAddCircle } from 'react-icons/md';
 import { IoMdLogOut } from "react-icons/io";
-import { IoMdLogOut } from "react-icons/io";
 
 
 const NavBar = () => {
