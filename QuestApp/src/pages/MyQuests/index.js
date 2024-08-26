@@ -113,41 +113,118 @@ const unassignQuest = async (questId) => {
     <>
         <NavBar></NavBar>
       <h1 className='flex flex-row justify-center text-4xl text-secondary hover:text-glow hover:drop-shadow-gl transition-all duration-300 my-5'>My Quests</h1>
-      <div className='flex flex-row flex-wrap gap-4 ml-28 mb-10'>
-        {quests.map((quest, index) => (
-          <div
-            key={index}
-            className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4'>
-            <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
-            <div id="quest-header" className='p-3'>
-              <h2 className='font-bold text-lg'>{quest.summary}</h2>
-            </div>
-            <div id="quest-summary" className='p-3'>
-              <p>{quest.description}</p>
-            </div>
-            <div id="quest-stats" className='grid grid-cols-3 p3 justify-between'>
-              <div className='flex flex-row justify-center'>
-                <p className='font-bold'>Status: </p>
-                <p className='px-2'>{quest.status}</p>
+      <div className='flex flex-row justify-center gap-4 text-lg text-secondary font-bold'>
+        {/*}to do column ------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
+        <div className='flex flex-col gap-4 ml-28 mb-10 items-center border-2 border-solid border-yellow-900 bg-yellow-950 rounded-lg'>
+          <div className='flex justify-center text-2xl'>To Do</div>
+          {quests.filter(quest => quest.status === "OPEN").map((quest, index) => (
+            <div
+              key={index}
+              className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
+              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <div id="quest-header" className='p-3'>
+                <h2 className='font-bold text-lg'>{quest.summary}</h2>
               </div>
-              <div className='flex flex-row justify-center'>
-                <p className='font-bold'>Experience Points: </p>
-                <p className='px-2'>{quest.xp}</p>
+              <div id="quest-summary" className='p-3'>
+                <p>{quest.description}</p>
               </div>
-              <div className='flex flex-row flex-wrap justify-center'>
-                <p className='font-bold'>Assignee: </p>
-                <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+              <div id="quest-stats" className='grid grid-cols-3 p3 justify-between'>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Status: </p>
+                  <p className='px-2'>{quest.status}</p>
+                </div>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
+                  <p className='px-2'>{quest.xp}</p>
+                </div>
+                <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
+                  <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+                </div>
+              </div>
+              <div className='flex flex-row justify-around m-4'>
+                {quest.assigneeId && (
+                    <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
+                  )}
+                <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => beginQuest(quest.id)}>Begin Quest</button>
               </div>
             </div>
-            <div className='flex flex-row justify-around m-4'>
-              {quest.assigneeId && (
-                  <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
-                )}
-              <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => beginQuest(quest.id)}>Begin Quest</button>
-              <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => completeQuest(quest.id)}>Complete Quest</button>
+          ))}
+        </div>
+        {/*active column ------------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
+        <div className='flex flex-col gap-4 ml-28 mb-10 border-2 border-solid border-yellow-900 bg-yellow-950 rounded-lg'>
+        <div className='flex justify-center text-2xl'>Active</div>
+          {quests.filter(quest => quest.status === "Active").map((quest, index) => (
+            <div
+              key={index}
+              className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
+              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <div id="quest-header" className='p-3'>
+                <h2 className='font-bold text-lg'>{quest.summary}</h2>
+              </div>
+              <div id="quest-summary" className='p-3'>
+                <p>{quest.description}</p>
+              </div>
+              <div id="quest-stats" className='grid grid-cols-3 p3 justify-between'>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Status: </p>
+                  <p className='px-2'>{quest.status}</p>
+                </div>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
+                  <p className='px-2'>{quest.xp}</p>
+                </div>
+                <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
+                  <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+                </div>
+              </div>
+              <div className='flex flex-row justify-around m-4'>
+                {quest.assigneeId && (
+                    <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
+                  )}
+                <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => completeQuest(quest.id)}>Complete Quest</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        {/*}completed column --------------------------------------------------------------------------------------------------------------------------------------------------------------*/}
+        <div className='flex flex-col gap-4 ml-28 mb-10 border-2 border-solid border-yellow-900 bg-yellow-950 rounded-lg'>
+        <div className='flex justify-center text-2xl'>Completed</div>
+          {quests.filter(quest => quest.status === "Completed").map((quest, index) => (
+            <div
+              key={index}
+              className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
+              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <div id="quest-header" className='p-3'>
+                <h2 className='font-bold text-lg'>{quest.summary}</h2>
+              </div>
+              <div id="quest-summary" className='p-3'>
+                <p>{quest.description}</p>
+              </div>
+              <div id="quest-stats" className='grid grid-cols-3 p3 justify-between'>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Status: </p>
+                  <p className='px-2'>{quest.status}</p>
+                </div>
+                <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
+                  <p className='px-2'>{quest.xp}</p>
+                </div>
+                <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
+                  <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
+                  <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>
+                </div>
+              </div>
+              <div className='flex flex-row justify-around m-4'>
+                {quest.assigneeId && (
+                    <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => unassignQuest(quest.id)}>Drop Quest</button>
+                  )}
+                <button className='hover:font-bold hover:text-purple-950 rounded-xl hover:flex-grow bg-secondary text-primary hover:drop-shadow-gl hover:bg-glow p-1 transition-all duration-300' onClick={() => beginQuest(quest.id)}>Restart Quest</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
