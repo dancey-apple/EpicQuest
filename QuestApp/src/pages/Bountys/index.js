@@ -73,33 +73,13 @@ export default function QuestsPage() {
   return (
     <>
       <NavBar />
-      <div className='flex flex-row justify-end mb-4'>
-        <button onClick={goToNewQuestForm} className='bg-secondary p-2 font-bold rounded-xl text-primary hover:text-purple-950 hover:drop-shadow-gl hover:bg-glow hover:w-40 transition-all duration-300'>New Quest</button>
-        <Popup trigger ={<button>(broken)New Quest</button>} position="right center" modal nested>
-          {close => (
-            <div id="new-quest-form" className='bg-primary text-secondary max-h-screen w-96 rounded-md drop-shadow-lg'>
-              <div className='flex flex-row justify-end'>
-                <h2 className='p-2 mr-auto font-bold text-lg'>New Quest</h2>
-                <button onClick={close} className='bg-yellow-200 m-4 p-1 rounded-sm'>X</button>
-              </div>
-              <form className='flex flex-col p-3'>
-                <label htmlFor="summary">Summary</label>
-                <input type="text" id="summary" name="summary" />
-                <label htmlFor="description">Description</label>
-                <textarea id="description" name="description" />
-                <label htmlFor="xp">XP</label>
-                <input type="number" id="xp" name="xp" />
-                <button type="submit">Create Quest</button>
-              </form>
-            </div>
-            )}
-        </Popup>
-      </div>
-      <div className='flex flex-row flex-wrap gap-4 ml-28'>
+      <div className='flex flex-row justify-end mb-4'></div>
+      <h1 className='text-6xl  text-secondary flex justify-center hover:text-glow hover:drop-shadow-gl mb-4 transition-all duration-300'>Bounty Board</h1>
+      <div className='flex flex-row flex-wrap gap-4 ml-28 border-solid border-2 border-yellow-900 bg-yellow-950 rounded-xl mr-4'>
         {quests.map((quest, index) => (
           <div id="quest-card"
             key={index}
-            class="max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4">
+            class="max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4">
             <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
             <div id="quest-header" className='p-3'>
               <h2 className='font-bold text-lg'>{quest.summary}</h2>

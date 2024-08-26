@@ -41,7 +41,7 @@ export default function MyStats() {
                 <h1>Adventurer: </h1>
                 <h1>{stats.username}</h1>
             </div>
-            <div className='max-w-full overflow-hidden drop-shadow-lg rounded-xl  transition-all duration-300 bg-yellow-900 text-secondary gap-4 ml-28 mr-4 h-fit' >
+            <div className='max-w-full overflow-hidden drop-shadow-lg rounded-xl  transition-all duration-300 bg-yellow-950 border-solid border-2 border-yellow-900 text-secondary gap-4 ml-28 mr-4 h-fit' >
                 <div className='flex flex-row'>
                     <img src='https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/mage.png?raw=true' className='max-w-52 h-fit mr-4'/>
                     <div className='flex flex-col'>
