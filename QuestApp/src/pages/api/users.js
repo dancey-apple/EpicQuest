@@ -32,18 +32,19 @@ export default async function handler(req, res) {
             await prisma.$disconnect();
         }
     } else if (req.method === "POST") {
-        const { username, firstName, lastName, level, xp } = req.body;
-        console.log({ username, firstName, lastName, level, xp });
+        const { username, firstName, lastName, email, password } = req.body;
+        console.log({ username, firstName, lastName, email, password });
         try {
-            const addXP = await prisma.user.update({
+            const createUser = await prisma.user.create({
                 data: {
-                    xp: parseInt(xp, 10),
-                },
-                where: {
+                    firstName: firstName,
+                    lastName: lastName,
                     username: username,
-                },
+                    email: email,
+                    password: password,
+                }
             });
-            res.status(200).json({ addXP });
+            res.status(200).json({ createUser });
         } catch (error) {
             console.error("Error updating user data:", error);
             res.status(500).json({ error: error.message });
