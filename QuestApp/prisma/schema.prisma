@@ -17,6 +17,7 @@ model Quests {
     assigneeId  Int?
     status      String    // "open" | "active" | "completed"
     xp          Int     @default(1)
+    gold        Int     @default(0)
 }
 
 model User {
@@ -31,4 +32,5 @@ model User {
     quests    Quests[]
     level     Int      @default(1)
     xp        Int      @default(0)
+    gold      Int      @default(0)
 }

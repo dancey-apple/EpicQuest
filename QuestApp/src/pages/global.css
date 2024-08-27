@@ -11,10 +11,22 @@
 body {
     color: black;
     background: #001524;
+    font-family: 'Norse', sans-serif;
 }
 
 @layer utilities {
     .text-balance {
         text-wrap: balance;
     }
+}
+
+@font-face {
+    font-family: 'Norse';
+    src: url(../img/Norse-KaWl.otf);
+}
+
+@font-face {
+    font-family: 'Norse-Bold';
+    src: url(../img/NorseBold-2Kge.otf);
+    font-weight: bold;
 }

@@ -53,6 +53,7 @@ export default function MyStats() {
                             <p>Level: {stats.level}</p>
                             <p>XP: {stats.xp}</p>
                             <p>XP to next Level: ?</p>
+                            <p>Gold: {stats.gold}</p>
                         </div>
                     </div>
                 </div>
