@@ -16,6 +16,7 @@ export default async function handler(req, res) {
           summary: true,
           description: true,
           xp: true,
+          gold: true,
           status: true,
           assigneeId: true,
           assignee: { 

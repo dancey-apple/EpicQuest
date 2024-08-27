@@ -96,6 +96,10 @@ export default function QuestsPage() {
                 <p className='font-bold'>XP: </p>
                 <p className='px-2'>{quest.xp}</p>
               </div>
+              <div className='flex flex-row'>
+                <p className='font-bold'>Gold: </p>
+                <p className='px-2'>{quest.gold}</p>
+              </div>
               <div className='flex flex-row flex-wrap border-solid border-black'>
                 <p className='font-bold'>Assignee: </p>
                 <p className='px-2'>{quest.assigneeId ? `${quest.assignee.firstName} ${quest.assignee.lastName}` : "Unassigned"}</p>

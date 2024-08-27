@@ -136,6 +136,8 @@ const unassignQuest = async (questId) => {
                 <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
                   <p className='px-2'>{quest.xp}</p>
+                  <p className='font-bold drop-shadow-gl text-glow'>Gold: </p>
+                  <p className='px-2'>{quest.gold}</p>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
@@ -173,6 +175,8 @@ const unassignQuest = async (questId) => {
                 <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
                   <p className='px-2'>{quest.xp}</p>
+                  <p className='font-bold drop-shadow-gl text-glow'>Gold: </p>
+                  <p className='px-2'>{quest.gold}</p>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
@@ -209,6 +213,8 @@ const unassignQuest = async (questId) => {
                 </div>
                 <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
+                  <p className='font-bold drop-shadow-gl text-glow'>Gold: </p>
+                  <p className='px-2'>{quest.gold}</p>
                   <p className='px-2'>{quest.xp}</p>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>

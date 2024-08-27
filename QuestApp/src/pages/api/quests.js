@@ -17,6 +17,7 @@ export default async function handler(req, res) {
           updatedAt: true,
           status: true,
           xp: true,
+          gold: true,
           assigneeId: true,
           assignee: {
             select: {
@@ -35,15 +36,16 @@ export default async function handler(req, res) {
       await prisma.$disconnect(); 
     }
   } else if (req.method === "POST") {
-    const { summary, description, xp, questId, status } = req.body;
-    console.log({ summary, description, xp, questId, status });
+    const { summary, description, xp, gold, questId, status } = req.body;
+    console.log({ summary, description, xp, gold, questId, status });
     try {
-      if (summary && description && xp !== undefined) {
+      if (summary && description && xp !== undefined && gold !== undefined) {
         const newQuest = await prisma.quests.create({
           data: {
             summary,
             description,
             xp: parseInt(xp, 10),
+            gold: parseInt(gold, 10),
             status: "OPEN",
           },
       });
