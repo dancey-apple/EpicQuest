@@ -12,6 +12,8 @@
     "db:seed": "prisma db seed"
   },
   "dependencies": {
+    "@libsql/client": "^0.8.1",
+    "@prisma/adapter-libsql": "^5.19.0",
     "@prisma/client": "^5.19.0",
     "next": "14.2.4",
     "react": "^18",
@@ -26,7 +28,7 @@
     "eslint-config-next": "14.2.4",
     "postcss": "^8.4.41",
     "prisma": "^5.19.0",
-    "tailwind": "^4.0.0"
+    "tailwind": "^2.2.0"
   },
   "prisma": {
     "seed": "node ./prisma/seed.js"
