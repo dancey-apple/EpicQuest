@@ -18,7 +18,7 @@ const LandingPage = () => {
                 </div>
                 <div className='flex flex-col text-center justify-center text-secondary font-bold gap-4 text-lg'>
                     <p className='text-2xl'>Take on quests, earn XP, and level up!</p>
-                    <p className='p-4'>Unlock the power of productivity with our gamified app that turns your daily to-dos into epic quests! Earn Experience Points (XP) and Gold as you conquer each task, leveling up your virtual character along the way. Spend your hard-earned Gold on loot, perks, or even PTO, while your XP helps you climb the ranks, boosting your skills and unlocking new rewards. Whether you're grinding through your workday or slaying personal goals, our app makes it fun, engaging, and rewarding. Start your journey today—because productivity should be an adventure!</p>
+                    <p className='p-4'>Unlock the power of productivity with our gamified app that turns your daily to-dos into epic quests! Earn Experience Points (XP) and Gold as you conquer each task, leveling up your virtual character along the way. Spend your hard-earned Gold on loot, perks, or even PTO, while your XP helps you climb the ranks, boosting your skills and unlocking new rewards. Whether you&aposre grinding through your workday or slaying personal goals, our app makes it fun, engaging, and rewarding. Start your journey today—because productivity should be an adventure!</p>
                     <p>Log in or Join to begin tracking your Quests!</p>
                 </div>
                 <div id="button-container" className='flex flex-row justify-center m-4'>
