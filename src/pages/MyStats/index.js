@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavBar from "../NavBar";
+import Image from "next/image";
 
 export default function MyStats() {
     const [stats, setStats] = useState([]);
@@ -43,7 +44,7 @@ export default function MyStats() {
             </div>
             <div className='max-w-full overflow-hidden drop-shadow-lg rounded-xl  transition-all duration-300 bg-yellow-950 border-solid border-2 border-yellow-900 text-secondary gap-4 ml-28 mr-4 h-fit' >
                 <div className='flex flex-row'>
-                    <img src='https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/mage.png?raw=true' className='max-w-52 h-fit mr-4'/>
+                    <Image src='/mage.png' alt="a mage character" width={500} height={500} className='max-w-52 h-fit mr-4'/>
                     <div className='flex flex-col'>
                         <div>
                             <h2 className='font-bold text-2xl drop-shadow-gl'>Stats:</h2>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import { useRouter, userRouter } from "next/router";
 import NavBar from "../NavBar";
+import Image from "next/image";
 
 export default function QuestsPage() {
   const [quests, setQuests] = useState([]);
@@ -80,7 +81,7 @@ export default function QuestsPage() {
           <div id="quest-card"
             key={index}
             class="max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4">
-            <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+            <Image className="w-full rounded" src="/bountyBoard.png" width={500} height={500} alt='Wood Background Image'/>
             <div id="quest-header" className='p-3'>
               <h2 className='font-bold text-lg'>{quest.summary}</h2>
             </div>

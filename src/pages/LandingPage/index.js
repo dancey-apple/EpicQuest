@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const LandingPage = () => {
 
@@ -14,7 +15,7 @@ const LandingPage = () => {
             <div className='flex flex-col  bg-yellow-900 rounded-lg drop-shadow-gl'>
                 <h1 className='flex flex-row justify-center text-secondary font-bold text-4xl mb-4'>Your Adventure Awaits!</h1>
                 <div className='flex flex-row justify-center'>
-                    <img className='rounded-lg m-2 max-w-6xl' src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/coverImage.png?raw=true" alt="EpicQuest Cover Image" />
+                    <Image className='rounded-lg m-2 max-w-6xl' src="/coverImage.png" width={800} height={500} alt="EpicQuest Cover Image" />
                 </div>
                 <div className='flex flex-col text-center justify-center text-secondary font-bold gap-4 text-lg'>
                     <p className='text-2xl'>Take on quests, earn XP, and level up!</p>

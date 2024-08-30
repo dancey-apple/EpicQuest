@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavBar from "../NavBar";
+import Image from "next/image";
 
 export default function MyQuest() {
   const [quests, setQuests] = useState([]);
@@ -121,7 +122,7 @@ const unassignQuest = async (questId) => {
             <div
               key={index}
               className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
-              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <Image className="w-full rounded" src="/bountyBoard.png" width={500} height={500} alt='Wood Background Image'/>
               <div id="quest-header" className='p-3'>
                 <h2 className='font-bold text-lg'>{quest.summary}</h2>
               </div>
@@ -160,7 +161,7 @@ const unassignQuest = async (questId) => {
             <div
               key={index}
               className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
-              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <Image className="w-full rounded" src="/bountyBoard.png" width={500} height={500} alt='Wood Background Image'/>
               <div id="quest-header" className='p-3'>
                 <h2 className='font-bold text-lg'>{quest.summary}</h2>
               </div>
@@ -199,7 +200,7 @@ const unassignQuest = async (questId) => {
             <div
               key={index}
               className='max-w-sm overflow-hidden drop-shadow-lg rounded-xl hover:drop-shadow-gl transition-all duration-300 bg-yellow-900 text-secondary gap-4 m-4'>
-              <img class="w-full rounded" src="https://github.com/dancey-apple/EpicQuest/blob/TailwindStyles/QuestApp/src/img/bountyBoard.png?raw=true"/>
+              <Image className="w-full rounded" src="/bountyBoard.png" width={500} height={500} alt='Wood Background Image'/>
               <div id="quest-header" className='p-3'>
                 <h2 className='font-bold text-lg'>{quest.summary}</h2>
               </div>
@@ -213,9 +214,9 @@ const unassignQuest = async (questId) => {
                 </div>
                 <div className='flex flex-row justify-center flex-wrap border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>XP: </p>
+                  <p className='px-2'>{quest.xp}</p>
                   <p className='font-bold drop-shadow-gl text-glow'>Gold: </p>
                   <p className='px-2'>{quest.gold}</p>
-                  <p className='px-2'>{quest.xp}</p>
                 </div>
                 <div className='flex flex-row flex-wrap justify-center border-2 rounded-lg pd-2 border-secondary border-solid mx-1 '>
                   <p className='font-bold drop-shadow-gl text-glow'>Assignee: </p>
