@@ -1,23 +1,33 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
+import { getSession } from 'next-auth/client'
 
-const libsql = createClient({
-  url: `${process.env.TURSO_DATABASE_URL}`,
-  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
+/*const libsql = createClient({
+    url: `${process.env.TURSO_DATABASE_URL}`,
+    authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
 
 const adapter = new PrismaLibSQL(libsql)
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient({ adapter })*/
 
-/*const prisma = new PrismaClient();*/
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
+  if (!session) {
+    return {
+      redirect: {
+        deistination: '/Login/index.js',
+        permanent: false,
+      },
+    };
+  }
+
   if (req.method === "GET") {
     try {
       const openQuests = await prisma.quests.findMany({
         where: {
-          assigneeId: null, 
+          assigneeId: session.user.id,
         },
         select: {
           id: true,

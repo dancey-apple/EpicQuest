@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavBar from "../NavBar";
 import Image from "next/image";
+import { useSession, getSession } from "next-auth/react";
 
 export default function MyQuest() {
   const [quests, setQuests] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const router = useRouter();
+  const { data: session } = useSession();
 
   async function loadData() {
     try {
@@ -73,42 +75,46 @@ export default function MyQuest() {
   };
 
 
-const unassignQuest = async (questId) => {
-  try {
-      const res = await fetch('/api/unassignQuest', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ questId }),
-      });
+  const unassignQuest = async (questId) => {
+    try {
+        const res = await fetch('/api/unassignQuest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ questId }),
+        });
 
-      if (!res.ok) {
+        if (!res.ok) {
 
-          throw new Error(`Failed to unassign quest: ${res.status} ${res.statusText}`);
-      }else{
-        alert("NEW ACHIEVMENT! You gave up on a quest. You have lost 10 XP.");
-      }
-      const updatedQuestData = await res.json();
+            throw new Error(`Failed to unassign quest: ${res.status} ${res.statusText}`);
+        }else{
+          alert("NEW ACHIEVMENT! You gave up on a quest. You have lost 10 XP.");
+        }
+        const updatedQuestData = await res.json();
 
-      setQuests(currentQuests => currentQuests.map(quest =>
-          quest.id === questId ? { ...quest, ...updatedQuestData.quest, assigneeId: null, assignee: null } : quest
-      ));
-  } catch (error) {
-      console.error('Error unassigning quest:', error);
-      setError(error.message); 
-  }
-  loadData();
-};
+        setQuests(currentQuests => currentQuests.map(quest =>
+            quest.id === questId ? { ...quest, ...updatedQuestData.quest, assigneeId: null, assignee: null } : quest
+        ));
+    } catch (error) {
+        console.error('Error unassigning quest:', error);
+        setError(error.message); 
+    }
+    loadData();
+  };
 
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
-    if (error) {
-        return <h1>Error: {error}</h1>;
-    }
+  if (error) {
+      return <h1>Error: {error}</h1>;
+  }
+
+  if (!session) {
+    return <h1>Please sign in (at the bottom left of your screen) to view your accepted quests.</h1>
+  }
 
   return (
     <>
